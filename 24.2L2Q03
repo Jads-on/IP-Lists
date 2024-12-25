@@ -1,0 +1,39 @@
+print('Boa noite, Papai Noel! Feliz Natal!')
+
+velocidade_media = 80
+quantidade_presentes = 0
+tempo = str(input(''))
+tempo_total = 0
+
+#Repetição
+while tempo != 'Já está amanhecendo, preciso voltar ao Polo Norte! HO HO HO!':
+  quantidade_presentes = quantidade_presentes + 1
+  tempo_distancia = 0
+#Entradas
+  crianca = str(input(''))
+  distancia = float(input(''))
+  unidade_de_medida = str(input(''))
+
+#conversao distan.
+  if unidade_de_medida == 'metros':
+    conversao = distancia / 1000
+  else:
+    conversao = distancia
+
+#calculo do tempo
+
+  tempo_distancia = (conversao/velocidade_media)
+  tempo_total = tempo_total + tempo_distancia 
+
+#mensagem tempo
+  if tempo_distancia >= 1:
+   print(f'Querido Papai Noel, você levará {int(tempo_distancia)} horas para chegar até a casa de {crianca}!')
+  elif 1 > tempo_distancia > 0.1:
+   print(f'Querido Papai Noel, você levará {int(tempo_distancia * 60)} minutos para chegar até a casa de {crianca}!')
+  else:
+   print(f'Querido Papai Noel, você chegará em breve na casa de {crianca}!')
+  tempo = str(input(''))
+  
+else:
+#saída
+    print(f'Querido Papai Noel, a noite de natal foi um sucesso! Você levou apenas {tempo_total:.2f} horas para entregar todos os {quantidade_presentes} presentes')
