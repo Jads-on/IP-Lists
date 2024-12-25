@@ -1,0 +1,20 @@
+# Entrada: altura dos triângulos
+n = int(input())
+
+# Parte superior da estrela (triângulo crescente)
+for i in range(n):
+    for j in range(2 * n - 1):
+        if j == n - 1 - i or j == n - 1 + i or (i == n - 1 and j % 2 == 0):
+            print('*', end='')
+        else:
+            print('⠀', end='')
+    print()
+
+# Parte inferior da estrela (triângulo decrescente)
+for i in range(n - 1):
+    for j in range(2 * n - 1):
+        if j == i + 1 or j == (2 * n - 2) - i - 1:
+            print('*', end='')
+        else:
+            print('⠀', end='')
+    print()
