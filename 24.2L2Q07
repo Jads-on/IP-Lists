@@ -1,0 +1,49 @@
+print("MARATONA DE NATAL: PAVÊ, RABANADA E FILMES")
+
+# Recebe a quantidade de membros da família
+quantidade_membros = int(input())
+
+# variaveis
+contagem_br_filmes_natalinos = 0
+contagem_fora_filmes_natalinos = 0
+numero_filme_natalino = 0
+
+# Loop
+while True:
+    nome_filme = input('').strip('')
+    if nome_filme.lower() == "chega de filmes por hoje":
+        break
+    
+    nacionalidade_filme = input().strip().lower()
+    
+# Verifica o filme
+    if "natal" in nome_filme.lower() or "papai noel" in nome_filme.lower() or "magia" in nome_filme.lower():
+        
+# Verifica se o filme é brasileiro
+        if nacionalidade_filme == "br" or nacionalidade_filme == "brasil":
+            contagem_br_filmes_natalinos = contagem_br_filmes_natalinos + 1
+            numero_filme_natalino = numero_filme_natalino + 1
+            print(f"{numero_filme_natalino}º filme: {nome_filme}")
+# Notas do filme
+            soma_notas = 0
+            for i in range(quantidade_membros):
+                nota = int(input())
+                soma_notas = soma_notas + nota
+            
+            media_notas = soma_notas / quantidade_membros
+            print(f"Média de votos para '{nome_filme}': {media_notas:.1f}")
+        
+# Caso seja filme natalino, mas não brasileiro
+        else:
+            contagem_fora_filmes_natalinos = contagem_fora_filmes_natalinos + 1
+
+#resultado final
+print(f"{contagem_br_filmes_natalinos} Filmes BR X {contagem_fora_filmes_natalinos} Filmes FORA")
+
+# Mensagens finais com base no número de filmes brasileiros natalinos
+if contagem_br_filmes_natalinos == 0:
+    print("Infelizmente esse ano não será nem pa vê e nem pa comer, sua lista não possui um filme bom, ops… nacional")
+elif contagem_br_filmes_natalinos == 1:
+    print("De toda sua lista, apenas UM filme de natal é nacional, melhore suas escolhas e tente novamente!")
+else:
+    print("A ceia está servida? Porque aqui estão os filmes brasileiros que vão dar o toque especial da sua maratona no Natal!")
