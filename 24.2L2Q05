@@ -1,0 +1,41 @@
+# Input
+nome_musica_1 = input()
+quantidade_streams_1 = int(input())
+nome_musica_2 = input()
+quantidade_streams_2 = int(input())
+nome_musica_3 = input()
+quantidade_streams_3 = int(input())
+
+# Organizando as músicas e seus streams em uma lista de tuplas
+musicas = [
+    (nome_musica_1, quantidade_streams_1),
+    (nome_musica_2, quantidade_streams_2),
+    (nome_musica_3, quantidade_streams_3)
+]
+
+# Ordenando as músicas de acordo com o número de streams, do maior para o menor
+musicas.sort(key=lambda x: x[1], reverse=True)
+
+# Imprimindo o Top 3
+for i, (nome, streams) in enumerate(musicas):
+    if i == 0:
+        print(f"1º: {nome} teve {streams} de streams e foi a música mais ouvida de Simone!")
+    elif i == 1:
+        print(f"2º: {nome} teve {streams} de streams e foi a segunda música mais ouvida de Simone!")
+    elif i == 2:
+        print(f"3º: {nome} teve {streams} de streams e completou o top 3 das músicas mais ouvidas da artista!")
+
+# Condição para músicas com mais de 10 milhões ou menos de 1 milhão de streams
+for nome, streams in musicas:
+    if streams > 10000000:
+        print(f"Uau! {nome} foi um hit certeiro da rainha do Natal!")
+    elif streams < 1000000:
+        print(f"Bom… a música {nome} não foi exatamente um sucesso nacional, mas foi o suficiente para entrar no topo da lista das mais ouvidas.")
+
+# Analisando a diferença entre a música mais ouvida e a segunda mais ouvida
+musica_1, streams_1 = musicas[0]
+musica_2, streams_2 = musicas[1]
+if streams_1 - streams_2 > 5000000:
+    print(f"{musica_1} foi disparada a mais ouvida neste ano! Nenhuma outra música natalina chega aos pés dela!")
+elif streams_1 - streams_2 < 1000000:
+    print(f"{musica_1} foi a mais ouvida, mas não podemos esquecer da música {musica_2}! Fez bonito nesse feriado!")
