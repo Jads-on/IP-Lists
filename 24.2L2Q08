@@ -1,0 +1,106 @@
+print("O Torneio de Natal começa agora! Que vençam os melhores!")
+
+# variaveis
+n_rodadas = int(input())
+
+meias_duendes = 0
+meias_elfos = 0
+desafios_dificeis_duendes = 0
+desafios_dificeis_elfos = 0
+
+# looping
+for rodada in range(1, n_rodadas + 1):
+    print(f'RODADA {rodada}')
+    
+    equipe = input()
+    desafio = input()
+    dificuldade = input()
+    
+# Desafio de testar brinquedos
+    brinquedos_testados = 0
+    if desafio == "Testaram os brinquedos.":
+        brinquedos_testados = int(input())
+ 
+    if dificuldade == "Fácil":
+        multiplicador = 1
+    elif dificuldade == "Médio":
+        multiplicador = 1.2
+    elif dificuldade == "Difícil":
+        multiplicador = 1.5
+    
+# meias ganhas
+    if desafio == "Prepararam as roupas do Papai Noel." or desafio == "Alimentaram as renas.":
+        meias_por_rodada = int(10 * multiplicador)
+    elif desafio == "Arrumaram os estoques de doces." or desafio == "Guardaram os presentes no trenó.":
+        meias_por_rodada = int(20 * multiplicador)
+    elif desafio == "Ajudaram a carregar os presentes." or desafio == "Embrulharam os presentes." or desafio == "Decoraram a árvore de Natal.":
+        meias_por_rodada = int(30 * multiplicador)
+    elif desafio == "Planejaram a rota do Papai Noel.":
+        meias_por_rodada = int(50 * multiplicador)
+    elif desafio == "Testaram os brinquedos.":
+        meias_por_rodada = int((brinquedos_testados * 2) * multiplicador)
+    else:
+        meias_por_rodada = 0
+    
+# Surprise M.F
+    evento = input()
+    if evento == "Dia de Sorte":
+        print("É um Dia de Sorte! Vocês ganharam 30 meias bônus!")
+        meias_por_rodada = meias_por_rodada + 30
+    elif evento == "Dia de Azar":
+        print("É um Dia de Azar! Vocês perderam 30 meias!")
+        if meias_por_rodada - 30 < 0:
+          meias_por_rodada = 0
+        else:
+          meias_por_rodada = meias_por_rodada - 30
+    elif evento == "Grinch":
+        print("O Grinch está sabotando o Torneio!")
+        cor = input()
+        while cor == "Amarelas" or cor == "Verdes" or cor == "Vermelhas":
+            if cor == "Amarelas":
+                meias_por_rodada = meias_por_rodada - 5
+            elif cor == "Verdes":
+                meias_por_rodada = meias_por_rodada - 10
+            elif cor == "Vermelhas":
+                meias_por_rodada = meias_por_rodada - 20
+            cor = input()  
+        if meias_por_rodada < 0:
+          meias_por_rodada = 0
+    
+    # Atualiza o total de meias e conta desafios difíceis
+    if equipe == "Duendes":
+        meias_duendes = meias_duendes + meias_por_rodada
+        if dificuldade == "Difícil":
+            desafios_dificeis_duendes = desafios_dificeis_duendes + 1
+    elif equipe == "Elfos":
+        meias_elfos = meias_elfos + meias_por_rodada
+        if dificuldade == "Difícil":
+            desafios_dificeis_elfos = desafios_dificeis_elfos + 1
+    
+    # meias ganhas na rodada
+    if meias_por_rodada > 0:
+        print(f"A equipe dos {equipe} ganhou {meias_por_rodada} meias nesta rodada.")
+    else:
+        print(f"Infelizmente, a equipe dos {equipe} não ganhou meias nessa rodada.")
+
+# Encerramento do torneio
+print("TORNEIO ENCERRADO!")
+print("Segurem seus gorros que o Noel já vai entregar o Prêmio da Estrela Natalina.")
+
+#vencedor
+if meias_duendes > meias_elfos:
+    equipe_vencedora = "Duendes"
+    meias_vencedoras = meias_duendes
+elif meias_elfos > meias_duendes:
+    equipe_vencedora = "Elfos"
+    meias_vencedoras = meias_elfos
+else:
+# desempate 
+    if desafios_dificeis_duendes > desafios_dificeis_elfos:
+        equipe_vencedora = "Duendes"
+        meias_vencedoras = meias_duendes
+    else:
+        equipe_vencedora = "Elfos"
+        meias_vencedoras = meias_elfos
+
+print(f"Os {equipe_vencedora} venceram o Torneio de Natal com um total de {meias_vencedoras} meias e terão a honra de ajudar o Papai Noel na noite mais mágica do ano.")
