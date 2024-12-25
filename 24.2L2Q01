@@ -1,0 +1,61 @@
+videogame = 0
+boneco = 0
+bicicleta = 0
+outros = 0
+
+#Ponto de partida
+presente = str(input(''))
+if presente == 'Videogame':
+    print('Mais um presente saindo!')
+    videogame = videogame + 1
+elif presente == 'Bicicleta':
+    print('Mais um presente saindo!')
+    bicicleta = bicicleta + 1
+elif presente == 'Boneco':
+    print('Mais um presente saindo!')
+    boneco = boneco + 1
+
+#Repetição
+while presente != 'FIM':
+  presente = str(input(''))
+  if presente == 'Videogame':
+    print('Mais um presente saindo!')
+    videogame = videogame + 1
+  elif presente == 'Bicicleta':
+    print('Mais um presente saindo!')
+    bicicleta = bicicleta + 1
+  elif presente == 'Boneco':
+    print('Mais um presente saindo!')
+    boneco = boneco + 1
+  elif presente != 'Videogame' and presente != 'Boneco' and presente != 'Bicicleta' and presente != 'FIM':
+    print('Esse presente não está sendo fabricado nesse momento')
+    outros = outros + 1
+
+#output
+else:
+#porcentagem
+  total_presentes = videogame + bicicleta + boneco + outros
+  total_boneco = (boneco/total_presentes) * 100
+  total_videogame = (videogame/total_presentes) * 100
+  total_bicicleta = (bicicleta/total_presentes) * 100
+  total_outros = (outros/total_presentes) * 100
+
+  print('Vamos agora ao relatório dos presentes!\n')
+  print(f'Boneco - {boneco} unidades - {total_boneco:.2f}%')
+  print(f'Videogame - {videogame} unidades - {total_videogame:.2f}%')
+  print(f'Bicicleta - {bicicleta} unidades - {total_bicicleta:.2f}%')
+  print(f'Outros - {outros} unidades - {total_outros:.2f}%')
+  
+#Expansão ou não da fábrica  
+  if total_outros == 0:
+    print('A demanda está muito alta! Teremos que fazer mais uma fábrica!')
+  elif total_outros > 50:
+    print('Parece que o Papai Noel terá que fechar a fábrica :(')
+  elif total_boneco <= 50 and total_videogame <= 50 and total_bicicleta <= 50 and total_outros <= 50:
+    print('A fábrica está cumprindo seu papel, porém não precisa ser expandida')
+  elif total_boneco > 50:
+    print('Boneco está sendo muito desejado! A fábrica terá que ser expandida!')
+  elif total_videogame > 50:
+    print('Videogame está sendo muito desejado! A fábrica terá que ser expandida!')
+  elif total_bicicleta > 50:
+    print('Bicicleta está sendo muito desejado! A fábrica terá que ser expandida!')
