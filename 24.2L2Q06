@@ -1,0 +1,81 @@
+# Lê o número de renas disponíveis
+numero_renas = int(input())
+
+# Se o número de renas for menor que 3
+if numero_renas < 3:
+    print("Meu senhor, com essa quantidade de rena vai ter que entregar os presentes a pé, viu?!")
+else:
+    # Lê o número de voltas
+    numero_voltas = int(input())
+
+    # Se houver exatamente 3 renas
+    if numero_renas == 3:
+        print("Como só temos 3 renas aptas pro serviço esse ano, não adianta muito querer ficar escolhendo")
+        print("As três únicas renas capazes de participar esse ano são:")
+        rena1 = input()
+        rena2 = input()
+        rena3 = input()
+        print(f"{rena1}, {rena2} e {rena3}.")
+        print("Não haverá teste de desempenho entre elas!")
+
+    # Se houver mais de 3 renas
+    else:
+        print("As três renas mais atléticas pra temporada de Natal são:")
+
+        # Inicializa as variáveis para armazenar a pontuação das renas
+        melhor_pontuacao = 0
+        segunda_pontuacao = 0
+        terceira_pontuacao = 0
+        rena_melhor = ''
+        rena_segunda = ''
+        rena_terceira = ''
+        
+        for i in range(numero_renas):
+            nome = input()
+            
+            # Calculando a pontuação inicial da rena com base no nome
+            pontuacao_inicial = 0
+            for letra in nome.lower():
+                if letra == 'a':
+                    pontuacao_inicial += 8
+                elif letra == 'e':
+                    pontuacao_inicial += 5
+                elif letra == 'i':
+                    pontuacao_inicial += 4
+                elif letra == 'o':
+                    pontuacao_inicial += 3
+                elif letra == 'u':
+                    pontuacao_inicial += 2
+            
+            # Calculando a pontuação final da rena após as voltas
+            pontuacao_final = pontuacao_inicial
+            for rodada in range(1, numero_voltas + 1):
+                resto = pontuacao_inicial % rodada
+                if resto == 0:
+                    pontuacao_final += 2  # Divisível
+                elif resto % 2 == 0:
+                    pontuacao_final += 1  # Resto par
+                # Se o resto for ímpar, não há adição de pontos
+
+            # Determinando se essa rena deve ser a primeira, segunda ou terceira
+            if pontuacao_final > melhor_pontuacao:
+                # Atualizando a melhor pontuação
+                terceira_pontuacao = segunda_pontuacao
+                rena_terceira = rena_segunda
+                segunda_pontuacao = melhor_pontuacao
+                rena_segunda = rena_melhor
+                melhor_pontuacao = pontuacao_final
+                rena_melhor = nome
+            elif pontuacao_final > segunda_pontuacao:
+                # Atualizando a segunda melhor pontuação
+                terceira_pontuacao = segunda_pontuacao
+                rena_terceira = rena_segunda
+                segunda_pontuacao = pontuacao_final
+                rena_segunda = nome
+            elif pontuacao_final > terceira_pontuacao:
+                # Atualizando a terceira melhor pontuação
+                terceira_pontuacao = pontuacao_final
+                rena_terceira = nome
+
+        # Imprime as renas mais atléticas em ordem de melhor para a terceira
+        print(f"{rena_melhor}, {rena_segunda} e {rena_terceira}.")
