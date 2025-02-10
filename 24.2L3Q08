@@ -1,0 +1,39 @@
+# Leitura da sequência de Gojo
+gojo = list(map(int, input().split('-')))
+
+# Leitura dos dados de Geto
+Gs = int(input())
+Gv = int(input())
+
+# Processamento da sequência de Gojo
+maior_seq_gojo = []
+maior_soma_gojo = 0
+seq_atual = [gojo[0]]
+
+# Analisando a sequência de Gojo para encontrar a maior sequência válida
+for i in range(1, len(gojo)):
+    if gojo[i] == gojo[i - 1] + 1:
+        seq_atual.append(gojo[i])
+    else:
+        if len(seq_atual) > len(maior_seq_gojo) or (len(seq_atual) == len(maior_seq_gojo) and sum(seq_atual) > maior_soma_gojo):
+            maior_seq_gojo = seq_atual
+            maior_soma_gojo = sum(maior_seq_gojo)
+        seq_atual = [gojo[i]]
+
+# Checando a última sequência encontrada
+if len(seq_atual) > len(maior_seq_gojo) or (len(seq_atual) == len(maior_seq_gojo) and sum(seq_atual) > maior_soma_gojo):
+    maior_seq_gojo = seq_atual
+    maior_soma_gojo = sum(maior_seq_gojo)
+
+# Determinando o vencedor
+if len(maior_seq_gojo) > Gs:
+    print("Uma vitória avassaladora de Satoru Gojo. Nem mesmo o infinito pode pará-lo. Ele realmente é o melhor!")
+elif len(maior_seq_gojo) < Gs:
+    print("Inesperado! Suguru Geto domina com maestria. Uma vitória indiscutível!")
+else:
+    if maior_soma_gojo > Gv:
+        print("Gojo vence por pouco. Mesmo com toda a pressão, ele continua no topo!")
+    elif maior_soma_gojo < Gv:
+        print("Geto vence por pouco. Sua estratégia foi impecável nesta batalha!")
+    else:
+        print("Um empate absoluto! Quem diria que duas lendas podem ser tão iguais em poder?")
