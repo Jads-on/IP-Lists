@@ -1,0 +1,35 @@
+# Lista para armazenar os animes
+Playlist = []
+
+# Recebe o limite de animes e a quantidade de indicações
+limite_anime = int(input(''))
+quantidade_anime = int(input(''))
+
+# Processa cada indicação de anime
+for a in range(quantidade_anime):
+    indicacao = input('').strip()  # Recebe a indicação e remove espaços extras
+    indicacao = indicacao.split(' - ')  # Divide a string em partes
+
+    # Extrai o nome, temporadas e quem indicou
+    nome_anime = indicacao[0].strip()
+    temporadas = int(indicacao[1].strip())
+    quem_indicou = indicacao[2].strip()
+
+    # Verifica se a lista já está cheia
+    if len(Playlist) >= limite_anime:
+        print(f'A lista de animes está cheia. O {nome_anime} não foi adicionado.')
+    else:
+        # Verifica se o anime foi indicado por Walter
+        if quem_indicou == 'Walter':
+            Playlist.append(nome_anime)
+            print(f'O {nome_anime} foi adicionado à lista de animes para assistir.')
+        # Verifica se o anime foi indicado pela Internet e tem 16 ou menos temporadas
+        elif quem_indicou == 'Internet' and temporadas <= 16:
+            Playlist.append(nome_anime)
+            print(f'O {nome_anime} foi adicionado à lista de animes para assistir.')
+        # Caso o anime seja muito longo
+        elif quem_indicou == 'Internet' and temporadas > 16:
+            print(f'O {nome_anime} é muito longo, fica pra próxima.')
+
+# Exibe a lista final de animes
+print(f'Lista final para assistir:{Playlist}')
