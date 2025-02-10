@@ -1,0 +1,123 @@
+#Listas
+
+#Armas
+arma_grau_especial = []
+arma_grau_1 = []
+arma_grau_2 = []
+arma_grau_3 = []
+arma_grau_4 = []
+
+#Objetos
+objeto_grau_especial = []
+objeto_grau_1 = []
+objeto_grau_2 = []
+objeto_grau_3 = []
+objeto_grau_4 = []
+
+#Entradas
+tipo_item = str(input(''))
+if tipo_item != 'Catalogação encerrada!':
+  item_grau = str(input(''))
+
+while tipo_item != 'Catalogação encerrada!':
+
+#Se for um arma
+    if tipo_item == 'arma': #Verifica qual grau é a arma pelo ultimo número, separa a string em uma lista, imprime apenas do nome até antes da classificação e adiciona na lista
+        if item_grau.endswith('0'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            arma_grau_especial.append(nome)
+            print(f'A {tipo_item} {nome} foi catalogada com sucesso!')
+
+        if item_grau.endswith('1'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            arma_grau_1.append(nome)
+            print(f'A {tipo_item} {nome} foi catalogada com sucesso!')
+
+        if item_grau.endswith('2'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            arma_grau_2.append(nome)
+            print(f'A {tipo_item} {nome} foi catalogada com sucesso!')
+
+        if item_grau.endswith('3'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            arma_grau_3.append(nome)
+            print(f'A {tipo_item} {nome} foi catalogada com sucesso!')
+
+        if item_grau.endswith('4'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            arma_grau_4.append(nome)
+            print(f'A {tipo_item} {nome} foi catalogada com sucesso!')
+
+# Caso seja um objeto           
+    if tipo_item == 'objeto': #Verifica qual grau é o objeto pelo ultimo número, separa a string em uma lista, imprime apenas do nome até antes da classificação
+        if item_grau.endswith('0'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            objeto_grau_especial.append(nome)
+            print(f'O {tipo_item} {nome} foi catalogado com sucesso!')
+
+        if item_grau.endswith('1'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            objeto_grau_1.append(nome)
+            print(f'O {tipo_item} {nome} foi catalogado com sucesso!')
+
+        if item_grau.endswith('2'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            objeto_grau_2.append(nome)
+            print(f'O {tipo_item} {nome} foi catalogado com sucesso!')
+
+        if item_grau.endswith('3'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            objeto_grau_3.append(nome)
+            print(f'O {tipo_item} {nome} foi catalogado com sucesso!')
+
+        if item_grau.endswith('4'):
+            item = item_grau.split()
+            nome = " ".join(item[0 :len(item) - 2])
+            objeto_grau_4.append(nome)
+            print(f'O {tipo_item} {nome} foi catalogado com sucesso!')
+#Restart
+    tipo_item = str(input(''))
+    if tipo_item != 'Catalogação encerrada!':
+      item_grau = str(input(''))
+
+#Output
+
+if tipo_item == 'Catalogação encerrada!':
+#Objetos
+
+    print('Processando lista de itens…\n') 
+    print('ITENS AMALDIÇOADOS DA TOKYO JUJUTSU HIGH\n')
+    print('Objetos')
+    if len(objeto_grau_especial) > 0:
+        print('Categoria Especial: {}'.format(', '.join(objeto_grau_especial)))
+    if len(objeto_grau_1) > 0:
+        print('Nível 1: {}'.format(', '.join(objeto_grau_1)))
+    if len(objeto_grau_2) > 0:
+        print('Nível 2: {}'.format(', '.join(objeto_grau_2)))
+    if len(objeto_grau_3) > 0:
+        print('Nível 3: {}'.format(', '.join(objeto_grau_3)))
+    if len(objeto_grau_4) > 0:
+        print('Nível 4: {}'.format(', '.join(objeto_grau_4)))
+    print('')
+
+#Armas
+    print('Armas')
+    if len(arma_grau_especial) > 0:
+        print('Categoria Especial: {}'.format(', '.join(arma_grau_especial)))
+    if len(arma_grau_1) > 0:
+        print('Nível 1: {}'.format(', '.join(arma_grau_1)))
+    if len(arma_grau_2) > 0:
+        print('Nível 2: {}'.format(', '.join(arma_grau_2)))
+    if len(arma_grau_3) > 0:
+        print('Nível 3: {}'.format(', '.join(arma_grau_3)))
+    if len(arma_grau_4) > 0:
+        print('Nível 4: {}'.format(', '.join(arma_grau_4)))
