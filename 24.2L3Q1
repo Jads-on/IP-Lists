@@ -1,35 +1,53 @@
-# Lista para armazenar os animes
-Playlist = []
+# Lista de suspeitos
+suspeitos = []
 
-# Recebe o limite de animes e a quantidade de indicações
-limite_anime = int(input(''))
-quantidade_anime = int(input(''))
+# Entrada inicial do status do vilão
+status_vilao = input('')
 
-# Processa cada indicação de anime
-for a in range(quantidade_anime):
-    indicacao = input('').strip()  # Recebe a indicação e remove espaços extras
-    indicacao = indicacao.split(' - ')  # Divide a string em partes
+# Início do loop
+while status_vilao != 'Já temos nossa lista de vilões':
+    if status_vilao == 'Novo vilão - Muito Perigoso':
+        nome_vilao = input('')
+        suspeitos.insert(0, nome_vilao)
+    
+    elif status_vilao == 'Novo vilão - Meio perigoso':
+        nome_vilao = input('')
+        suspeitos.append(nome_vilao)
+    
+    elif status_vilao == 'O que ele está fazendo aqui?':
+        nome_vilao = input('')
+        if nome_vilao in suspeitos:
+            suspeitos.remove(nome_vilao)
+    
+    elif status_vilao == 'Vilão mais perigoso do que pensávamos':
+        posi_vilao1 = int(input(''))
+        posi_vilao2 = int(input(''))
+        # Troca as posições dos vilões com base nos índices
+        suspeitos[posi_vilao1], suspeitos[posi_vilao2] = suspeitos[posi_vilao2], suspeitos[posi_vilao1]
+    
+    elif status_vilao == 'Que estranho, esses dois vilões… troque-os de lugar':
+        vilao1 = input('')
+        vilao2 = input('')
+        if vilao1 in suspeitos and vilao2 in suspeitos:
+            # Troca as posições dos vilões com base nos nomes
+            posi_vilao1 = suspeitos.index(vilao1)
+            posi_vilao2 = suspeitos.index(vilao2)
+            suspeitos[posi_vilao1], suspeitos[posi_vilao2] = suspeitos[posi_vilao2], suspeitos[posi_vilao1]
+    
+    elif status_vilao == 'Essa posição não está de acordo, ele nem odeia carecas':
+        nome_vilao = input('')
+        if nome_vilao in suspeitos:
+            suspeitos.remove(nome_vilao)
+        suspeitos.append(nome_vilao)
+    
+    elif status_vilao == 'Como a lista está ficando?':
+        # Imprime a lista de vilões formatada
+        print(f'{", ".join(suspeitos)}')
+    
+    # Recebe o próximo comando
+    status_vilao = input('')
 
-    # Extrai o nome, temporadas e quem indicou
-    nome_anime = indicacao[0].strip()
-    temporadas = int(indicacao[1].strip())
-    quem_indicou = indicacao[2].strip()
+# Quando a lista de vilões está completa, imprime o resultado final
+if status_vilao == 'Já temos nossa lista de vilões':
+    print(f'O resultado final ficou assim:\n{", ".join(suspeitos)}')
 
-    # Verifica se a lista já está cheia
-    if len(Playlist) >= limite_anime:
-        print(f'A lista de animes está cheia. O {nome_anime} não foi adicionado.')
-    else:
-        # Verifica se o anime foi indicado por Walter
-        if quem_indicou == 'Walter':
-            Playlist.append(nome_anime)
-            print(f'O {nome_anime} foi adicionado à lista de animes para assistir.')
-        # Verifica se o anime foi indicado pela Internet e tem 16 ou menos temporadas
-        elif quem_indicou == 'Internet' and temporadas <= 16:
-            Playlist.append(nome_anime)
-            print(f'O {nome_anime} foi adicionado à lista de animes para assistir.')
-        # Caso o anime seja muito longo
-        elif quem_indicou == 'Internet' and temporadas > 16:
-            print(f'O {nome_anime} é muito longo, fica pra próxima.')
-
-# Exibe a lista final de animes
-print(f'Lista final para assistir:{Playlist}')
