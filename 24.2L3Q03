@@ -1,0 +1,75 @@
+#Inicio do looping
+quantidade_monitores = int(input(''))
+
+#Listas 
+aprimorador = []
+emissor = []
+transmutador = []
+manipulador = []
+conjurador = []
+especialista= []
+
+#looping
+for m in range(0, quantidade_monitores):
+  monitor = str(input(''))
+  efeito = str(input(''))
+
+# Verifica se o monitor já está na lista  
+  if monitor in aprimorador:
+    aprimorador.remove(monitor)
+
+  if monitor in emissor:
+    emissor.remove(monitor)
+                       
+  if monitor in transmutador:
+    transmutador.remove(monitor)
+    
+  if monitor in manipulador:
+    manipulador.remove(monitor)
+
+  if monitor in conjurador:
+    conjurador.remove(monitor)
+    
+  if monitor in especialista:
+    especialista.remove(monitor)
+
+#classifica o monitor 
+  if efeito == "O volume da água foi alterado.":
+      aprimorador.append(monitor)
+        
+  elif efeito == "A cor da água foi alterada.":
+      emissor.append(monitor)
+        
+  elif efeito == "O gosto da água foi alterado.":
+      transmutador.append(monitor)
+        
+  elif efeito == "A folha se moveu.":
+      manipulador.append(monitor)
+        
+  elif efeito == "Impurezas apareceram na água.":
+      conjurador.append(monitor)
+        
+  elif efeito == "O volume da água foi alterado.":
+      especialista.append(monitor)
+        
+  else:
+      especialista.append(monitor)
+
+#Print 
+if len(aprimorador) > 0:
+    print(f'Temos um total de {len(aprimorador)} aprimoradores entre os monitores! Eles são: {", ".join(aprimorador)}')
+    
+if len(emissor) > 0:
+    print(f'Temos um total de {len(emissor)} emissores entre os monitores! Eles são: {", ".join(emissor)}')
+    
+if len(transmutador) > 0:
+    print(f'Temos um total de {len(transmutador)} transmutadores entre os monitores! Eles são: {", ".join(transmutador)}')
+    
+if len(manipulador) > 0:
+    print(f'Temos um total de {len(manipulador)} manipuladores entre os monitores! Eles são: {", ".join(manipulador)}')
+    
+if len(conjurador) > 0:
+    print(f'Temos um total de {len(conjurador)} conjuradores entre os monitores! Eles são: {", ".join(conjurador)}')
+
+if len(especialista) > 0:
+    print(f'Temos um total de {len(especialista)} especialistas entre os monitores! Eles são: {", ".join(especialista)}')
