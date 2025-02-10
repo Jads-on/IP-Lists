@@ -1,0 +1,80 @@
+# Lista de animes favoritos de César
+animes_favoritos = [
+    'Fullmetal Alchemist: Brotherhood', 
+    'Attack On Titan', 
+    'Death Note', 
+    'Naruto', 
+    'One Piece', 
+    'Demon Slayer', 
+    'Dragon Ball Z', 
+    'Jujutsu Kaisen', 
+    'Pokemon', 
+    'Bleach'
+]
+
+# Dicionário para armazenar a pontuação de cada anime
+pontuacao_animes = {anime: 0 for anime in animes_favoritos}
+
+# Lista para armazenar os votos de cada amigo
+votos = []
+
+# Entrada da quantidade de pessoas que irão votar
+quantidade_pessoas = int(input())
+print(f'{quantidade_pessoas} amigos participaram da votação!')
+
+# Loop para cada pessoa que irá votar
+for v in range(quantidade_pessoas):
+    temp = []
+
+    # Entrada do nome do amigo
+    nome = input('')
+    print(f'{nome} é a {v + 1}ª pessoa à votar!')
+
+    # Recebendo o top 1
+    top1 = input('').title()
+    while top1 not in animes_favoritos:
+        print(f'O anime {top1} não está presente na votação!')
+        top1 = input('').title()
+    print(f'{nome} colocou {top1} em 1º lugar do seu ranking!')
+    temp.append(top1)
+    pontuacao_animes[top1] += 3  # Adiciona 3 pontos para o primeiro lugar
+
+    # Recebendo o top 2
+    top2 = input('').title()
+    while top2 == top1 or top2 not in animes_favoritos:
+        if top2 == top1:
+            print(f'{nome}, você já votou neste anime! Escolha um outro anime para ocupar a sua 2º posição!')
+        else:
+            print(f'O anime {top2} não está presente na votação!')
+        top2 = input('').title()
+    print(f'{nome} colocou {top2} em 2º lugar do seu ranking!')
+    temp.append(top2)
+    pontuacao_animes[top2] += 2  # Adiciona 2 pontos para o segundo lugar
+
+    # Recebendo o top 3
+    top3 = input('').title()
+    while top3 == top1 or top3 == top2 or top3 not in animes_favoritos:
+        if top3 == top1 or top3 == top2:
+            print(f'{nome}, você já votou neste anime! Escolha um outro anime para ocupar a sua 3º posição!')
+        else:
+            print(f'O anime {top3} não está presente na votação!')
+        top3 = input('').title()
+    print(f'{nome} colocou {top3} em 3º lugar do seu ranking!')
+    temp.append(top3)
+    pontuacao_animes[top3] += 1  # Adiciona 1 ponto para o terceiro lugar
+
+    votos.append(temp[:])
+
+# Determinação do anime vencedor
+vencedor = max(pontuacao_animes, key=pontuacao_animes.get)
+pontos_vencedor = pontuacao_animes[vencedor]
+
+# Exibe o resultado final
+print(f'Com {pontos_vencedor} pontos, {vencedor} foi votado como o melhor anime!')
+
+# Caso o vencedor seja Pokémon
+if vencedor == 'Pokemon':
+    print('César - Pokémon é o melhor anime da história!!!')
+
+# Finaliza o programa com a mensagem padrão
+print('Eita mandaram dúvida no discord, vou lá responder!')
