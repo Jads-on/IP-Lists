@@ -1,0 +1,50 @@
+numero_feiticeiros = int(input(''))
+
+participantes = []
+vencedores = []
+
+# Adição dos participantes na lista
+for f in range(numero_feiticeiros):
+    feiticeiro = str(input(''))
+    nivel = int(input(''))
+    participantes.append([feiticeiro, nivel])
+
+# Rodadas (até que reste apenas um vencedor)
+rodada = 1
+while len(participantes) > 1:
+    print(f'\n--- Rodada {rodada} ---')
+    vencedores = []
+    
+    # Duelos
+    for i in range(0, len(participantes) - 1, 2):  # Até o penúltimo, garantindo duelos de pares
+        print(f'Confronto: {participantes[i][0]} vs {participantes[i+1][0]}')
+        
+        if participantes[i][1] >= participantes[i+1][1]:
+            print(f'{participantes[i][0]} vence!')
+            vencedores.append(participantes[i])
+        else:
+            print(f'{participantes[i+1][0]} vence!')
+            vencedores.append(participantes[i+1])
+    
+    # Se o número de feiticeiros for ímpar, o último avança automaticamente
+    if len(participantes) % 2 != 0:
+        print(f'{participantes[-1][0]} avança automaticamente!')
+        vencedores.append(participantes[-1])
+    
+    # Os vencedores se tornam os participantes da próxima rodada
+    participantes = vencedores[:]
+    rodada += 1
+
+# Determinação do campeão
+campeao_nome = participantes[0][0]
+campeao_nivel = participantes[0][1]
+print(f'\nO campeão do torneio é {campeao_nome} com nível de energia amaldiçoada {campeao_nivel}!')
+
+# Verificação especial para Itadori
+if campeao_nome == 'Itadori':
+    if campeao_nivel > 90:
+        print('\n### Nas sombras da alma de Itadori, Sukuna desperta e toma o controle! ###')
+        print('Uma aura de destruição toma conta, não há escapatória.')
+        print('Com um riso diabólico, ele manifesta sua Expansão de Domínio: Fukuma Mizushi!')
+    else:
+        print('\nItadori vence com honra e bravura!')
